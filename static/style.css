@@ -1,158 +1,223 @@
-/* General Page Styling */
+/* ================= General Page Styling ================= */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    min-height: 100vh;
     color: #fff;
+    background: linear-gradient(-45deg, #667eea, #764ba2, #ff7eb9, #43e97b);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    overflow-x: hidden;
 }
 
-/* Container */
+/* Animated gradient */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Floating shapes in the background */
+body::before {
+    content: "";
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+    animation: floatShapes 20s linear infinite;
+    z-index: 0;
+}
+
+@keyframes floatShapes {
+    0% { transform: translate(0,0) rotate(0deg); }
+    50% { transform: translate(20%, 10%) rotate(180deg); }
+    100% { transform: translate(0,0) rotate(360deg); }
+}
+
+/* ================= Container ================= */
 .container {
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
 }
 
-/* Navigation */
+/* ================= Navigation ================= */
 nav {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 30px;
+    gap: 24px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
 }
 
 nav a {
     text-decoration: none;
     color: #fff;
-    font-weight: bold;
-    transition: color 0.3s;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
 }
 
 nav a:hover {
-    color: #ffd700;
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
 }
 
-/* Profile Picture */
+/* ================= Profile Picture ================= */
 .profile-pic {
     text-align: center;
-    margin: 20px 0 30px 0;
+    margin: 30px 0 40px 0;
+    position: relative;
+    z-index: 1;
 }
 
 .profile-pic img {
     width: 300px;
     height: 300px;
-    border-radius: 80%;
-    border: 4px solid white;
+    border-radius: 50%;
     object-fit: cover;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* Section Cards */
+.profile-pic img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ================= Section Cards ================= */
 .intro, .contact {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 28px;
+    border-radius: 16px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 1;
 }
 
 .intro h2, .contact h2 {
     margin-top: 0;
     color: #ffd700;
+    font-size: 2rem;
+    letter-spacing: 1px;
 }
 
-/* Contact Form */
+/* ================= Contact Form ================= */
 form {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    max-width: 600px; /* limit width for better readability */
+    max-width: 700px;
     margin: 0 auto;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 24px;
+    border-radius: 12px;
+    z-index: 1;
 }
 
 label {
-    font-weight: bold;
-    margin-bottom: 8px; /* more spacing below label */
-    display: block;
-    color: #fff; /* ensures visibility on blue gradient */
+    font-weight: 600;
+    color: #ffd700;
+    font-size: 1rem;
 }
 
 input, textarea {
     width: 100%;
-    padding: 12px 15px; /* padding inside inputs */
-    border: 1px solid #ccc; /* subtle border for clarity */
+    padding: 14px;
     border-radius: 8px;
+    border: none;
     outline: none;
     font-size: 1rem;
-    box-sizing: border-box;
-    background-color: #fff; /* white background for input */
-    color: #000; /* black text inside input */
-    transition: box-shadow 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transition: all 0.3s ease;
 }
 
 input:focus, textarea:focus {
-    box-shadow: 0 0 8px #ffd700;
-    border-color: #ffd700;
+    background: rgba(255, 255, 255, 0.2);
 }
 
-textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
+/* ================= Button ================= */
 button {
-    background: #ffd700;
-    color: #000;
-    padding: 15px;
-    font-size: 1rem;
-    font-weight: bold;
+    padding: 14px;
+    font-size: 1.1rem;
+    font-weight: 600;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    width: 100%;
+    background: #ffd700;
+    color: #764ba2;
+    transition: all 0.3s ease;
 }
 
 button:hover {
-    background: #ffcc00;
+    background: #fff;
     transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-/* Back to Home link style */
+/* ================= Back to Home link ================= */
 a.back-home {
-    display: inline-block;
-    margin-top: 15px;
     color: #ffd700;
     text-decoration: underline;
-    font-weight: 600;
 }
 
-/* Responsive adjustments */
-@media (max-width: 640px) {
-    .container {
-        padding: 10px;
-    }
-    form {
-        max-width: 100%;
-    }
+a.back-home:hover {
+    color: #fff;
 }
+
+/* ================= Images Container ================= */
 .images-container {
-    display: flex;             /* place images side by side */
-    justify-content: center;   /* center the images horizontally */
-    gap: 30px;                 /* space between images */
-    margin: 20px 0;            /* optional spacing above/below */
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: 30px 0;
+    position: relative;
+    z-index: 1;
 }
 
 .images-container img {
-    width: 500px;              /* adjust width as needed */
-    height: 500px;              /* maintain aspect ratio */
-    border-radius: 50%;        /* circular images */
-    border: 3px solid white;   /* optional border */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* optional shadow */
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
+.images-container img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ================= Responsive adjustments ================= */
+@media (max-width: 900px) {
+    .profile-pic img, .images-container img { width: 180px; height: 180px; }
+}
+
+@media (max-width: 640px) {
+    .profile-pic img, .images-container img { width: 140px; height: 140px; }
+    .container { padding: 16px; }
+}
+@media (max-width: 480px) {
+    nav { flex-direction: column; gap: 16px; }
+    .images-container { flex-direction: column; gap: 16px; }
+}
+@media (max-width: 360px) {
+    .profile-pic img, .images-container img { width: 120px; height: 120px; }
+}
+/* ================= End of CSS ================= */
